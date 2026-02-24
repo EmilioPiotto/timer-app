@@ -4,7 +4,9 @@
       "Bash(pip3:*)",
       "Bash(python3:*)",
       "Bash(curl:*)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(which node:*)"
     ]
   }
 }
