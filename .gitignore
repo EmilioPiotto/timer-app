@@ -1,0 +1,21 @@
+# Python
+timervenv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Environment
+.env.local
+.env.*.local
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+
+# CDK
+infra/.venv/
+infra/cdk.out/
+
+# OS
+.DS_Store
