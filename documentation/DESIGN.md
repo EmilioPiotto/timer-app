@@ -304,15 +304,17 @@ AWS_DEFAULT_REGION=us-east-1
 ```
 timer_app/
 ├── documentation/
-│   └── DESIGN.md             # this file
-├── docker-compose.yml        # DynamoDB Local (port 8001)
+│   ├── DESIGN.md             # this file
+│   └── DEV_GUIDE.md          # how to run locally, URLs, curl reference
+├── docker-compose.yml        # DynamoDB Local (port 8001, inMemory)
 ├── .env.local                # git-ignored
 ├── .env.example
 ├── .gitignore
-├── timervenv/                # Python 3.12 venv
+├── timervenv/                # Python 3.12 venv (managed via uv)
 │
 ├── backend/
-│   ├── requirements.txt      # fastapi uvicorn boto3 mangum pydantic
+│   ├── __init__.py           # makes backend/ a package (enables relative imports)
+│   ├── requirements.txt      # fastapi uvicorn boto3 mangum pydantic python-dotenv
 │   ├── main.py               # FastAPI app, CORS, lifespan, all routes
 │   ├── database.py           # boto3 DynamoDB client, init_tables()
 │   ├── models.py             # Pydantic v2: Macro, Timer, Step, MacroSlot
@@ -364,23 +366,23 @@ timer_app/
 
 ## Implementation Phases
 
-### Phase 0 — Environment Setup
-- [ ] Install Node.js via nvm (`nvm install --lts`)
-- [ ] Install Python deps into timervenv: `pip install fastapi "uvicorn[standard]" boto3 mangum pydantic`
-- [ ] Write `backend/requirements.txt`
-- [ ] Write `docker-compose.yml` (DynamoDB Local on port 8001)
-- [ ] Write `.env.example` and `.env.local`
-- [ ] Write `.gitignore`
-- [ ] **Done:** `docker compose up` starts; DynamoDB Local responds on port 8001
+### Phase 0 — Environment Setup ✅
+- [x] Install Node.js via nvm (`nvm install --lts`)
+- [x] Install Python deps into timervenv via uv
+- [x] Write `backend/requirements.txt`
+- [x] Write `docker-compose.yml` (DynamoDB Local on port 8001, `-inMemory` mode)
+- [x] Write `.env.example` and `.env.local`
+- [x] Write `.gitignore`
+- [x] **Done:** `sudo docker compose up -d` starts; DynamoDB Local responds on port 8001
 
-### Phase 1 — Backend Core
-- [ ] `database.py`: boto3 client (reads `DYNAMODB_ENDPOINT_URL`), `init_tables()` creates macros + timers tables
-- [ ] `models.py`: Pydantic `BeepStep`, `WaitStep`, `Step` union, `MacroSlot`, `MacroCreate`, `MacroResponse`, `TimerCreate`, `TimerResponse`
-- [ ] `crud_macros.py`: list, get, create, update, delete
-- [ ] `crud_timers.py`: list, get, create, update, delete; GET timer expands each slot with full macro
-- [ ] `templates.py`: 3 macro templates + 3 timer templates as Python dicts
-- [ ] `main.py`: FastAPI app, CORS (`localhost:5173`), lifespan → `init_tables()`, all 12 routes
-- [ ] **Done:** POST macro → POST timer referencing it → GET timer returns expanded slots
+### Phase 1 — Backend Core ✅
+- [x] `database.py`: boto3 client (reads `DYNAMODB_ENDPOINT_URL`), `init_tables()` creates macros + timers tables
+- [x] `models.py`: Pydantic `BeepStep`, `WaitStep`, `Step` union, `MacroSlot`, `MacroCreate`, `MacroResponse`, `TimerCreate`, `TimerResponse`
+- [x] `crud_macros.py`: list, get, create, update, delete
+- [x] `crud_timers.py`: list, get, create, update, delete; GET timer expands each slot with full macro
+- [x] `templates.py`: 3 macro templates + 3 timer templates as Python dicts
+- [x] `main.py`: FastAPI app, CORS (`localhost:5173`), lifespan → `init_tables()`, all 12 routes
+- [x] **Done:** POST macro → POST timer referencing it → GET timer returns expanded slots
 
 ### Phase 2 — Frontend Scaffold
 - [ ] `npm create vite@latest frontend -- --template react-ts`
