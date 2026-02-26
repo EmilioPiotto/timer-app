@@ -14,7 +14,11 @@
       "Bash(which uv:*)",
       "Bash(uv venv:*)",
       "Bash(uv pip:*)",
-      "Bash(timervenv/bin/python:*)"
+      "Bash(timervenv/bin/python:*)",
+      "Bash(npm create:*)",
+      "Bash(sudo docker:*)",
+      "Bash(export:*)",
+      "Bash(pkill:*)"
     ]
   }
 }
