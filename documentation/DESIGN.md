@@ -384,15 +384,15 @@ timer_app/
 - [x] `main.py`: FastAPI app, CORS (`localhost:5173`), lifespan → `init_tables()`, all 12 routes
 - [x] **Done:** POST macro → POST timer referencing it → GET timer returns expanded slots
 
-### Phase 2 — Frontend Scaffold
-- [ ] `npm create vite@latest frontend -- --template react-ts`
-- [ ] `npm install react-router-dom`
-- [ ] `vite.config.ts` with `/api` proxy to `http://localhost:8000`
-- [ ] `types.ts`: all TypeScript types mirroring backend models
-- [ ] `api.ts`: fetch wrappers for all 12 endpoints + 2 template endpoints
-- [ ] `App.tsx`: 7 routes
-- [ ] Stub page components (return `<div>Page name</div>`)
-- [ ] **Done:** dev server loads; `fetch('/api/health')` returns `{status:"ok"}` in browser console
+### Phase 2 — Frontend Scaffold ✅
+- [x] `npm create vite@latest frontend -- --template react-ts`
+- [x] `npm install react-router-dom`
+- [x] `vite.config.ts` with `/api` proxy to `http://localhost:8000`
+- [x] `types.ts`: all TypeScript types mirroring backend models
+- [x] `api.ts`: fetch wrappers for all 12 endpoints + 2 template endpoints
+- [x] `App.tsx`: 7 routes
+- [x] Stub page components (return `<div>Page name</div>`)
+- [x] **Done:** production build succeeds; TypeScript clean; proxy configured
 
 ### Phase 3 — Macro Library + Builder
 - [ ] `BeepBlock.tsx`: inline soundId dropdown + volume slider
