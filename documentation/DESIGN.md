@@ -409,9 +409,9 @@ timer_app/
 - [x] Validation: warn if fixed durations exceed totalMinutes
 - [x] **Done:** timer with 3 macros (one AUTO), verify distribution math, save, reload
 
-### Phase 5 — Audio Hook
-- [ ] `useAudio.ts`: AudioContext singleton, `unlock()`, `playSound()` for all 3 sounds
-- [ ] **Done:** console test `playSound('bell', 0.8)` after clicking
+### Phase 5 — Audio Hook ✅
+- [x] `useAudio.ts`: AudioContext singleton, `unlock()`, `playSound()` for all 3 sounds
+- [x] **Done:** console test `playSound('bell', 0.8)` after clicking
 
 ### Phase 6 — Timer Runner Engine
 - [ ] `useTimerEngine.ts`:
