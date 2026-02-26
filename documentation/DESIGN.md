@@ -413,15 +413,15 @@ timer_app/
 - [x] `useAudio.ts`: AudioContext singleton, `unlock()`, `playSound()` for all 3 sounds
 - [x] **Done:** console test `playSound('bell', 0.8)` after clicking
 
-### Phase 6 — Timer Runner Engine
-- [ ] `useTimerEngine.ts`:
-  - State: `IDLE | TRANSITIONING{nextIndex, countdown} | RUNNING_MACRO{slotIndex, stepIndex, endTimeMs, loopIteration, elapsedMs} | COMPLETED`
+### Phase 6 — Timer Runner Engine ✅
+- [x] `useTimerEngine.ts`:
+  - State: `IDLE | RUNNING | PAUSED | TRANSITIONING | COMPLETED`
   - `start()`: compute AUTO durations, start first macro
   - Inner tick: `performance.now()` + rAF, advance steps within macro
   - On macro complete: TRANSITIONING (3s), then next macro
   - `pause()` / `resume()` / `stop()`
-  - Side effects: `playSound` for BEEP steps via `useEffect` on step index change
-- [ ] **Done:** 2-macro timer; beeps fire; 3s transition; second macro starts
+  - Side effects: `playSound` for BEEP steps called directly at step entry
+- [x] **Done:** 2-macro timer; beeps fire; 3s transition; second macro starts
 
 ### Phase 7 — Timer Runner UI
 - [ ] `TimerRunnerPage.tsx`: big countdown, step type, macro name + slot index, loop progress, next step
