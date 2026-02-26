@@ -10,7 +10,7 @@
 
 ## Starting Everything
 
-Open **three terminal tabs** from the project root (`~/wsl_repos/timer_app`).
+Open **four terminal tabs** from the project root (`~/wsl_repos/timer_app`).
 
 ### Tab 1 — DynamoDB Local
 
@@ -36,7 +36,20 @@ uvicorn backend.main:app --reload --port 8000
 
 On startup, `init_tables()` creates the `macros` and `timers` DynamoDB tables automatically.
 
-### Tab 3 — DynamoDB Admin UI (optional)
+### Tab 3 — Frontend (Vite dev server)
+
+```bash
+cd frontend
+npm run dev
+```
+
+The dev server proxies all `/api/*` requests to `http://localhost:8000` — no CORS setup needed.
+
+> **Note:** Node.js is managed via nvm. If `npm` is not found, run:
+> `export NVM_DIR="$HOME/.nvm" && . "$NVM_DIR/nvm.sh"`
+> (add to `~/.bashrc` to make it permanent)
+
+### Tab 4 — DynamoDB Admin UI (optional)
 
 ```bash
 DYNAMO_ENDPOINT=http://localhost:8001 npx dynamodb-admin --port 8002
@@ -48,6 +61,7 @@ DYNAMO_ENDPOINT=http://localhost:8001 npx dynamodb-admin --port 8002
 
 | Service | URL | Notes |
 |---|---|---|
+| Frontend | http://localhost:5173 | Vite dev server; proxies `/api` to backend |
 | Backend API | http://localhost:8000/api | All routes prefixed `/api` |
 | FastAPI interactive docs | http://localhost:8000/docs | Try all endpoints from the browser |
 | FastAPI schema | http://localhost:8000/redoc | Alternative docs view |
@@ -119,8 +133,9 @@ uv pip install --python timervenv/bin/python -r backend/requirements.txt
 ## Stopping Everything
 
 ```bash
-# Stop backend: Ctrl+C in Tab 2
-# Stop dynamodb-admin: Ctrl+C in Tab 3
+# Stop frontend:  Ctrl+C in Tab 3
+# Stop backend:   Ctrl+C in Tab 2
+# Stop dynamodb-admin: Ctrl+C in Tab 4
 # Stop DynamoDB container:
 sudo docker compose down
 ```
