@@ -402,12 +402,12 @@ timer_app/
 - [x] `MacroLibraryPage.tsx`: list macros + template macros, Use/Edit actions
 - [x] **Done:** create 4-step macro, save, reload, edit, verify persistence
 
-### Phase 4 — Timer Editor
-- [ ] `MacroSlotRow.tsx`: macro name, ↑↓, loop mode selector, computed duration, [↗]
-- [ ] `AddMacroModal.tsx`: pick from library + templates; "Create new"; loop mode picker
-- [ ] `TimerEditorPage.tsx`: name + totalMinutes, slot list, auto-distribution summary, Save, Run; draft to localStorage
-- [ ] Validation: warn if fixed durations exceed totalMinutes
-- [ ] **Done:** timer with 3 macros (one AUTO), verify distribution math, save, reload
+### Phase 4 — Timer Editor ✅
+- [x] `MacroSlotRow.tsx`: macro name, ↑↓, loop mode selector, computed duration, [↗]
+- [x] `AddMacroModal.tsx`: pick from library + templates; "Create new"; loop mode picker
+- [x] `TimerEditorPage.tsx`: name + totalMinutes, slot list, auto-distribution summary, Save, Run; draft to localStorage
+- [x] Validation: warn if fixed durations exceed totalMinutes
+- [x] **Done:** timer with 3 macros (one AUTO), verify distribution math, save, reload
 
 ### Phase 5 — Audio Hook
 - [ ] `useAudio.ts`: AudioContext singleton, `unlock()`, `playSound()` for all 3 sounds
