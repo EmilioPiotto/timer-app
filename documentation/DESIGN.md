@@ -394,13 +394,13 @@ timer_app/
 - [x] Stub page components (return `<div>Page name</div>`)
 - [x] **Done:** production build succeeds; TypeScript clean; proxy configured
 
-### Phase 3 — Macro Library + Builder
-- [ ] `BeepBlock.tsx`: inline soundId dropdown + volume slider
-- [ ] `WaitBlock.tsx`: inline seconds input
-- [ ] `StepSequence.tsx`: horizontal layout, `(+)` insertion, renders Beep/Wait blocks
-- [ ] `MacroBuilderPage.tsx`: name, StepSequence, Save/Delete, Back; draft to localStorage
-- [ ] `MacroLibraryPage.tsx`: list macros + template macros, Use/Edit actions
-- [ ] **Done:** create 4-step macro, save, reload, edit, verify persistence
+### Phase 3 — Macro Library + Builder ✅
+- [x] `BeepBlock.tsx`: inline soundId dropdown + volume slider
+- [x] `WaitBlock.tsx`: inline seconds input
+- [x] `StepSequence.tsx`: horizontal layout, `(+)` insertion, renders Beep/Wait blocks
+- [x] `MacroBuilderPage.tsx`: name, StepSequence, Save/Delete, Back; draft to localStorage
+- [x] `MacroLibraryPage.tsx`: list macros + template macros, Use/Edit actions
+- [x] **Done:** create 4-step macro, save, reload, edit, verify persistence
 
 ### Phase 4 — Timer Editor
 - [ ] `MacroSlotRow.tsx`: macro name, ↑↓, loop mode selector, computed duration, [↗]
