@@ -6,7 +6,15 @@
       "Bash(curl:*)",
       "Bash(echo:*)",
       "Bash(git ls-tree:*)",
-      "Bash(which node:*)"
+      "Bash(which node:*)",
+      "Bash(source:*)",
+      "Bash(/home/emi/wsl_repos/timer_app/timervenv/bin/python:*)",
+      "Bash(PYTHONPATH=/home/emi/wsl_repos/timer_app/timervenv/lib/python3.12/site-packages python3:*)",
+      "Bash(ls:*)",
+      "Bash(which uv:*)",
+      "Bash(uv venv:*)",
+      "Bash(uv pip:*)",
+      "Bash(timervenv/bin/python:*)"
     ]
   }
 }
