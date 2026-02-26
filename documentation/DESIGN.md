@@ -423,12 +423,12 @@ timer_app/
   - Side effects: `playSound` for BEEP steps called directly at step entry
 - [x] **Done:** 2-macro timer; beeps fire; 3s transition; second macro starts
 
-### Phase 7 — Timer Runner UI
-- [ ] `TimerRunnerPage.tsx`: big countdown, step type, macro name + slot index, loop progress, next step
-- [ ] Transition overlay: "Next up: [name] — 3...2...1..."
-- [ ] Completion screen: elapsed + "Back to Timers"
-- [ ] Audio banner if not unlocked
-- [ ] **Done:** end-to-end 3-macro timer with beeps, pause/resume, completion screen
+### Phase 7 — Timer Runner UI ✅
+- [x] `TimerRunnerPage.tsx`: big countdown, step type, macro name + slot index, loop progress, next step
+- [x] Transition overlay: "Next up: [name] — 3...2...1..."
+- [x] Completion screen: elapsed + "Back to Timers"
+- [x] Audio banner if not unlocked
+- [x] **Done:** end-to-end 3-macro timer with beeps, pause/resume, completion screen
 
 ### Phase 8 — Home Page & Polish
 - [ ] `HomePage.tsx`: timer list + template timers
