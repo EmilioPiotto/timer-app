@@ -43,7 +43,7 @@ export default function TimerRunnerPage() {
   // ── Completed ───────────────────────────────────────────────────────────────
   if (phase === 'COMPLETED') {
     return (
-      <div style={{ padding: 32, textAlign: 'center' }}>
+      <div className="runner" style={{ padding: 32, textAlign: 'center' }}>
         <h2>Workout complete!</h2>
         <p style={{ fontSize: 28 }}>Total time: {formatMs(state.elapsedMs)}</p>
         <button onClick={() => navigate('/')} style={{ marginTop: 16, padding: '10px 24px' }}>
@@ -56,9 +56,9 @@ export default function TimerRunnerPage() {
   // ── Idle ────────────────────────────────────────────────────────────────────
   if (phase === 'IDLE') {
     return (
-      <div style={{ padding: 32, textAlign: 'center' }}>
+      <div className="runner" style={{ padding: 32, textAlign: 'center' }}>
         <h2>{timer.name}</h2>
-        <p style={{ color: '#666' }}>
+        <p className="dim">
           {timer.totalMinutes} min · {timer.slots.length} macro{timer.slots.length !== 1 ? 's' : ''}
         </p>
         <button
@@ -79,16 +79,16 @@ export default function TimerRunnerPage() {
     const nextSlot = timer.slots[state.nextSlotIndex]
     const nextDurMs = slotDurations[state.nextSlotIndex] ?? 0
     return (
-      <div style={{ padding: 32, textAlign: 'center' }}>
+      <div className="runner" style={{ padding: 32, textAlign: 'center' }}>
         {!isUnlocked && (
           <p style={{ color: 'orange', cursor: 'pointer' }} onClick={unlock}>
             ⚠ Tap to enable sound
           </p>
         )}
-        <p style={{ color: '#888', fontSize: 16, marginBottom: 8 }}>Next up:</p>
+        <p className="dim" style={{ fontSize: 16, marginBottom: 8 }}>Next up:</p>
         <h2 style={{ margin: '0 0 4px' }}>{nextSlot.macro.name}</h2>
         {nextDurMs > 0 && (
-          <p style={{ color: '#666' }}>{(nextDurMs / 60_000).toFixed(1)} min</p>
+          <p className="dim">{(nextDurMs / 60_000).toFixed(1)} min</p>
         )}
         <p style={{ fontSize: 64, margin: '16px 0' }}>{state.countdown}…</p>
         <button onClick={handleStop} style={{ marginTop: 8 }}>Stop</button>
@@ -108,7 +108,7 @@ export default function TimerRunnerPage() {
       : null
 
   return (
-    <div style={{ padding: 32, textAlign: 'center', maxWidth: 420, margin: '0 auto' }}>
+    <div className="runner" style={{ padding: 32, textAlign: 'center', maxWidth: 420, margin: '0 auto' }}>
       {!isUnlocked && (
         <p style={{ color: 'orange', cursor: 'pointer', marginBottom: 8 }} onClick={unlock}>
           ⚠ Tap to enable sound
@@ -116,9 +116,9 @@ export default function TimerRunnerPage() {
       )}
 
       {/* Macro header */}
-      <div style={{
+      <div className="dim" style={{
         display: 'flex', justifyContent: 'space-between',
-        fontSize: 14, color: '#666', marginBottom: 28,
+        fontSize: 14, marginBottom: 28,
       }}>
         <span>
           Macro: <strong>{slot.macro.name}</strong> ({state.slotIndex + 1} of {timer.slots.length})
@@ -132,14 +132,14 @@ export default function TimerRunnerPage() {
       </div>
 
       {/* Step type */}
-      <div style={{ fontSize: 22, color: '#444', marginBottom: 24 }}>
+      <div style={{ fontSize: 22, marginBottom: 24 }}>
         {currentStep.type === 'WAIT'
           ? 'WAIT'
           : `BEEP · ${currentStep.soundId}`}
       </div>
 
       {/* Next step preview */}
-      <div style={{ fontSize: 14, color: '#999', marginBottom: 36, minHeight: 20 }}>
+      <div className="subdim" style={{ fontSize: 14, marginBottom: 36, minHeight: 20 }}>
         {nextStep
           ? `next: ${nextStep.type === 'WAIT' ? `WAIT ${nextStep.seconds}s` : `BEEP (${nextStep.soundId})`}`
           : ''}

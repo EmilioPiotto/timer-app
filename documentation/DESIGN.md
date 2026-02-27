@@ -306,6 +306,7 @@ timer_app/
 ├── documentation/
 │   ├── DESIGN.md             # this file
 │   └── DEV_GUIDE.md          # how to run locally, URLs, curl reference
+├── README.md                 # how to run locally, known limitations
 ├── docker-compose.yml        # DynamoDB Local (port 8001, inMemory)
 ├── .env.local                # git-ignored
 ├── .env.example
@@ -352,8 +353,7 @@ timer_app/
 │       │   └── shared/
 │       │       ├── Header.tsx
 │       │       └── ConfirmModal.tsx
-│       └── styles/
-│           └── global.css
+│       └── index.css
 │
 └── infra/                    # AWS CDK — added in Phase 9
     ├── app.py
@@ -430,14 +430,14 @@ timer_app/
 - [x] Audio banner if not unlocked
 - [x] **Done:** end-to-end 3-macro timer with beeps, pause/resume, completion screen
 
-### Phase 8 — Home Page & Polish
-- [ ] `HomePage.tsx`: timer list + template timers
-- [ ] `Header.tsx`: [Timers] [Macros] nav
-- [ ] `ConfirmModal.tsx`: reusable confirm dialog
-- [ ] Wire unsaved-changes confirm on editor navigation
-- [ ] `global.css`: minimal reset, dark runner, readable builder
-- [ ] `README.md`: how to run locally, known limitations
-- [ ] **Done:** full flow from clone to completing a workout
+### Phase 8 — Home Page & Polish ✅
+- [x] `HomePage.tsx`: timer list + template timers
+- [x] `Header.tsx`: [Timers] [Macros] nav
+- [x] `ConfirmModal.tsx`: reusable confirm dialog
+- [x] Wire unsaved-changes confirm on editor navigation
+- [x] `index.css`: minimal reset, dark runner, readable builder
+- [x] `README.md`: how to run locally, known limitations
+- [x] **Done:** full flow from clone to completing a workout
 
 ### Phase 9 — AWS & CI/CD (future)
 - [ ] `infra/` CDK app: DynamoDB tables, Lambda, API GW HTTP API, S3, CloudFront

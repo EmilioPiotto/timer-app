@@ -4,6 +4,7 @@ import type { MacroResponse, MacroSlot } from '../../types'
 import { createTimer, getMacro, getTimer, updateTimer } from '../../api'
 import MacroSlotRow from './MacroSlotRow'
 import AddMacroModal from './AddMacroModal'
+import ConfirmModal from '../shared/ConfirmModal'
 
 interface SavedState {
   name: string
@@ -51,6 +52,7 @@ export default function TimerEditorPage() {
   const [errors, setErrors] = useState<string[]>([])
   const [warnings, setWarnings] = useState<string[]>([])
   const [saving, setSaving] = useState(false)
+  const [confirm, setConfirm] = useState<{ message: string; onConfirm: () => void } | null>(null)
 
   // Load on mount
   useEffect(() => {
@@ -191,8 +193,20 @@ export default function TimerEditorPage() {
   }
 
   function handleBack() {
-    if (isDirty && !window.confirm('Discard unsaved changes?')) return
-    navigate('/')
+    if (isDirty) {
+      setConfirm({ message: 'Discard unsaved changes?', onConfirm: () => navigate('/') })
+    } else {
+      navigate('/')
+    }
+  }
+
+  function handleRun() {
+    if (!id) return
+    if (isDirty) {
+      setConfirm({ message: 'You have unsaved changes. Run anyway?', onConfirm: () => navigate(`/timers/${id}/run`) })
+    } else {
+      navigate(`/timers/${id}/run`)
+    }
   }
 
   function handleAddSlot(slot: MacroSlot, macro: MacroResponse) {
@@ -306,10 +320,7 @@ export default function TimerEditorPage() {
         <button onClick={() => setShowAddModal(true)}>+ Add Macro</button>
         <button onClick={handleSave} disabled={saving}>{saving ? 'Saving…' : 'Save'}</button>
         {id && (
-          <button
-            onClick={() => navigate(`/timers/${id}/run`)}
-            style={{ marginLeft: 'auto' }}
-          >
+          <button onClick={handleRun} style={{ marginLeft: 'auto' }}>
             Run ▶
           </button>
         )}
@@ -319,6 +330,15 @@ export default function TimerEditorPage() {
         <AddMacroModal
           onAdd={handleAddSlot}
           onClose={() => setShowAddModal(false)}
+        />
+      )}
+
+      {confirm && (
+        <ConfirmModal
+          message={confirm.message}
+          confirmLabel="Yes"
+          onConfirm={() => { setConfirm(null); confirm.onConfirm() }}
+          onCancel={() => setConfirm(null)}
         />
       )}
     </div>

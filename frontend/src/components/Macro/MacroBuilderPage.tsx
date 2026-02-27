@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import type { Step } from '../../types'
 import { createMacro, deleteMacro, getMacro, updateMacro } from '../../api'
 import StepSequence from './StepSequence'
+import ConfirmModal from '../shared/ConfirmModal'
 
 interface Draft {
   name: string
@@ -22,6 +23,7 @@ export default function MacroBuilderPage() {
   const [savedState, setSavedState] = useState<Draft | null>(null)
   const [errors, setErrors] = useState<string[]>([])
   const [saving, setSaving] = useState(false)
+  const [confirm, setConfirm] = useState<{ message: string; onConfirm: () => void } | null>(null)
 
   // Load on mount
   useEffect(() => {
@@ -101,17 +103,24 @@ export default function MacroBuilderPage() {
     }
   }
 
-  async function handleDelete() {
+  function handleDelete() {
     if (!id) return
-    if (!window.confirm('Delete this macro?')) return
-    await deleteMacro(id)
-    localStorage.removeItem(draftKey(id))
-    navigate('/macros')
+    setConfirm({
+      message: 'Delete this macro? This cannot be undone.',
+      onConfirm: async () => {
+        await deleteMacro(id)
+        localStorage.removeItem(draftKey(id))
+        navigate('/macros')
+      },
+    })
   }
 
   function handleBack() {
-    if (isDirty && !window.confirm('Discard unsaved changes?')) return
-    navigate('/macros')
+    if (isDirty) {
+      setConfirm({ message: 'Discard unsaved changes?', onConfirm: () => navigate('/macros') })
+    } else {
+      navigate('/macros')
+    }
   }
 
   return (
@@ -145,6 +154,15 @@ export default function MacroBuilderPage() {
           </button>
         )}
       </div>
+
+      {confirm && (
+        <ConfirmModal
+          message={confirm.message}
+          confirmLabel="Yes"
+          onConfirm={() => { setConfirm(null); confirm.onConfirm() }}
+          onCancel={() => setConfirm(null)}
+        />
+      )}
     </div>
   )
 }

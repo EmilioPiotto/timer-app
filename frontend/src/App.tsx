@@ -1,13 +1,17 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import Header from './components/shared/Header'
 import HomePage from './components/Home/HomePage'
 import MacroBuilderPage from './components/Macro/MacroBuilderPage'
 import MacroLibraryPage from './components/Macro/MacroLibraryPage'
 import TimerEditorPage from './components/Timer/TimerEditorPage'
 import TimerRunnerPage from './components/Timer/TimerRunnerPage'
 
-export default function App() {
+function AppInner() {
+  const { pathname } = useLocation()
+  const isRunner = pathname.endsWith('/run')
   return (
-    <BrowserRouter>
+    <>
+      {!isRunner && <Header />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/timers/new" element={<TimerEditorPage />} />
@@ -17,6 +21,14 @@ export default function App() {
         <Route path="/macros/new" element={<MacroBuilderPage />} />
         <Route path="/macros/:id" element={<MacroBuilderPage />} />
       </Routes>
+    </>
+  )
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppInner />
     </BrowserRouter>
   )
 }
